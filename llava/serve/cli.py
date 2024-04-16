@@ -66,9 +66,11 @@ def main(args):
     else:
         image_tensor = image_tensor.to(model.device, dtype=torch.float16)
 
-    while True:
+    global PROMPT_LIST
+    while PROMPT_LIST:
         try:
-            inp = input(f"{roles[0]}: ")
+            # inp = input(f"{roles[0]}: ")
+            inp = PROMPT_LIST.pop(0)
         except EOFError:
             inp = ""
         if not inp:
