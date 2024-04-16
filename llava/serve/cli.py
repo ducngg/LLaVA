@@ -66,7 +66,7 @@ def main(args):
     else:
         image_tensor = image_tensor.to(model.device, dtype=torch.float16)
 
-    global PROMPT_LIST
+    PROMPT_LIST = args.prompt_list.split(';')
     while PROMPT_LIST:
         try:
             # inp = input(f"{roles[0]}: ")
@@ -128,5 +128,6 @@ if __name__ == "__main__":
     parser.add_argument("--load-8bit", action="store_true")
     parser.add_argument("--load-4bit", action="store_true")
     parser.add_argument("--debug", action="store_true")
+    parser.add_argument("--prompt-list", type=str, default=None)
     args = parser.parse_args()
     main(args)
