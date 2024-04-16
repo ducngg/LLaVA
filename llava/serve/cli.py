@@ -65,7 +65,7 @@ def main(args):
         image_tensor = [image.to(model.device, dtype=torch.float16) for image in image_tensor]
     else:
         image_tensor = image_tensor.to(model.device, dtype=torch.float16)
-
+    print(roles[0], roles[1])
     PROMPT_LIST = args.prompt_list.split(';')
     while PROMPT_LIST:
         try:
@@ -76,8 +76,8 @@ def main(args):
         if not inp:
             print("exit...")
             break
-
-        print(f"{roles[1]}: ", end="")
+        print(f"Duc: {inp}")
+        print(f"GemSUraV: ", end="")
 
         if image is not None:
             # first message
@@ -107,7 +107,8 @@ def main(args):
                 temperature=args.temperature,
                 max_new_tokens=args.max_new_tokens,
                 streamer=streamer,
-                use_cache=True)
+                use_cache=True
+            )
 
         outputs = tokenizer.decode(output_ids[0]).strip()
         conv.messages[-1][-1] = outputs
