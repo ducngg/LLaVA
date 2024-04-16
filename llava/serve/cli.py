@@ -76,6 +76,8 @@ def main(args):
         if not inp:
             print("exit...")
             break
+
+        print(f"")
         print(f"Duc: {inp}")
         print(f"GemSUraV: ", end="")
 
